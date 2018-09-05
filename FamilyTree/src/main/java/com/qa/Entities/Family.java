@@ -1,20 +1,19 @@
 package com.qa.Entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.qa.Enums.Gender;
 
 public class Family {
 	
-	private String name;
-	private Gender gender; 
-	private List<ArrayList>child;
-	private List<ArrayList> parent;
+	 private HashMap<String, Person> family = new HashMap<String, Person>();
+
 	
 	public boolean male(String name) {
 		
-		setGender(gender);
 		
 		
 		return false;
@@ -50,6 +49,7 @@ public class Family {
 	}
 	
 	public boolean setParent(String childName, String parentName) {
+		
 		return false;
 	}
 	
@@ -61,35 +61,7 @@ public class Family {
 		return getChild() ;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public List<ArrayList> getChild() {
-		return child;
-	}
-
-	public void setChild(List<ArrayList> child) {
-		this.child = child;
-	}
-
-	public List<ArrayList> getParent() {
-		return parent;
-	}
-
-	public void setParent(List<ArrayList> parent) {
-		this.parent = parent;
-	}
 }
+	
+	
+	
