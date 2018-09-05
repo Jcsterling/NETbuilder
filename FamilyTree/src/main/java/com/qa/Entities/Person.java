@@ -61,6 +61,19 @@ public class Person {
 	public List<Person> getChildren() {
 		return children;
 	}
+	
+	public String[] getAllChildren() {
+
+	     String[] childNames = new String[children.size()];
+	     
+	     int index = 0;
+
+	     for (Person eachPerson : children) {
+	        childNames[index] = eachPerson.getName();
+	        index++;
+	        }
+	    return childNames;
+	}
 
 	public void setChildren(ArrayList<Person> children) {
 		this.children = children;
@@ -70,21 +83,21 @@ public class Person {
         this.parents.add(parent);
     }
 	
-	public String[] getParents() {
+	public String[] getAllParents() {
 
-	     String[] parentName = new String[parents.size()];
+	     String[] parentNames = new String[parents.size()];
 	     
 	     int index = 0;
 
 	     for (Person eachPerson : parents) {
-	        parentName[index] = eachPerson.getName();
+	        parentNames[index] = eachPerson.getName();
 	        index++;
 	        }
-	    return parentName;
+	    return parentNames;
 	}
 	    
 	 
-	public ArrayList<Person> getParents() {
+	public List<Person> getParents() {
 		return parents;
 	}
 

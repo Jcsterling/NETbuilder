@@ -6,60 +6,90 @@ import java.util.List;
 import java.util.Map;
 
 import com.qa.Enums.Gender;
+import com.qa.Service.FamilyService;
 
 public class Family {
 	
-	 private HashMap<String, Person> family = new HashMap<String, Person>();
-
+	
 	
 	public boolean male(String name) {
-		
-		
-		
-		return false;
-		
+		FamilyService fservice = new FamilyService();
+
+		if (fservice.getFamilyMember(name).getGender().equals(Gender.FEMALE)) {
+        return false;
+    } else {
+        fservice.getFamilyMember(name).setGender(Gender.MALE);
+        return true;
+    }
+	
 	}
 	
 	public boolean female(String name) {
 		
-		return false;
+		FamilyService fservice = new FamilyService();
+
+		if (fservice.getFamilyMember(name).getGender().equals(Gender.MALE)) {
+        return false;
+    } else {
+        fservice.getFamilyMember(name).setGender(Gender.FEMALE);
+        return true;
+    }
 		
 	}
 	
-	public boolean isMale () {
-		if (this.getGender() == Gender.MALE) {
-			return  true;
+	public boolean isMale (String name) {
+		FamilyService fservice = new FamilyService();
+
+		if( fservice.getFamilyMember(name).getGender().equals(Gender.MALE)) {
+		return true;
+		}else {
+			return false;
 		}
-		else 
-		{
-		return false;
-		}
+			
 	}
 	
-	public boolean isFemale () {
+	public boolean isFemale (String name) {
 		
-		if (this.getGender() == Gender.FEMALE) {
-			return  true;
+		FamilyService fservice = new FamilyService();
+
+		if( fservice.getFamilyMember(name).getGender().equals(Gender.FEMALE)) {
+		return true;
+		}else {
+			return false;
 		}
-		else 
-		{
-		return false;
-		}
-		
 	}
 	
 	public boolean setParent(String childName, String parentName) {
 		
+		FamilyService fservice = new FamilyService();
+		boolean haveChild = fservice.getFamilyMember(childName) != null;
+	    boolean haveParent = fservice.getFamilyMember(parentName) != null;
+
+	        if (!haveChild){
+	            fservice.newFamilyMember(childName);
+	        }
+	        if (!haveParent) {
+	            fservice.newFamilyMember(parentName);
+	        }
+		
 		return false;
 	}
 	
-	public List<ArrayList> getParents(String name) {
-		return getParent() ;
-	}
-	
-	public List<ArrayList> getChildren(String name) {
-		return getChild() ;
-	}
+	public String[] getParents(String name){
+		FamilyService fservice = new FamilyService();
+		
+		String[] parents = fservice.getFamilyMember(name).getAllParents();
+		
+        return parents;
+    }
+
+    public String[] getChildrenOf(String name){
+    	FamilyService fservice = new FamilyService();
+    	Person person = new Person();
+		
+    	String[] children = fservice.getFamilyMember(name).getAllChildren();
+        return children;
+    }
 
 }
 	
