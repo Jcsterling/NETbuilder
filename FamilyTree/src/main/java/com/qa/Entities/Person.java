@@ -9,11 +9,18 @@ public class Person {
 	
 	private String name;
 	private Gender gender; 
-	private List<Person>child;
-	private Person[] parent;
+	private List<Person>children;
+	private List<Person> parents;
 	
 	public Person() {
 		super();
+	}
+	
+	public Person(String name) {
+		super();
+		  this.name = name;
+	      parents = new ArrayList<>();
+	      children = new ArrayList<>();
 	}
 	
 	public Person(String name, Gender gender) {
@@ -23,14 +30,13 @@ public class Person {
 		
 	}
 
-	public Person(String name, Gender gender, List<Person> child, Person[] parent) {
+	public Person(String name, Gender gender, List<Person> child, List<Person> parent) {
 		super();
 		this.name = name;
 		this.gender = gender;
-		this.child = child;
-		this.parent = parent;
+		   parents = new ArrayList<>();
+		      children = new ArrayList<>();
 	}
-
 
 	public String getName() {
 		return name;
@@ -47,23 +53,44 @@ public class Person {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
+	
+	public void addChildren(Person child) {
+        this.children.add(child);
+    }
 
-	public List<Person> getChild() {
-		return child;
+	public List<Person> getChildren() {
+		return children;
 	}
 
-	public void setChild(List<Person> child) {
-		this.child = child;
-	}
-
-	public Person[] getParent() {
-		return parent;
-	}
-
-	public void setParent(Person[] parent) {
-		this.parent = parent;
+	public void setChildren(ArrayList<Person> children) {
+		this.children = children;
 	}
 	
+	void addParent(Person parent) {
+        this.parents.add(parent);
+    }
+	
+	public String[] getParents() {
+
+	     String[] parentName = new String[parents.size()];
+	     
+	     int index = 0;
+
+	     for (Person eachPerson : parents) {
+	        parentName[index] = eachPerson.getName();
+	        index++;
+	        }
+	    return parentName;
+	}
+	    
+	 
+	public ArrayList<Person> getParents() {
+		return parents;
+	}
+
+	public void setParents(ArrayList<Person> parents) {
+		this.parents = parents;
+	}
 
 
 }
