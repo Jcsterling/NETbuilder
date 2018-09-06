@@ -14,14 +14,22 @@ public class Family {
 	
 	public boolean male(String name) {
 		FamilyService fservice = new FamilyService();
+		
+		if(fservice.getFamilyMember(name).getName() == null) {
+			fservice.newFamilyMember(name, Gender.MALE);
+		}
 
 		if (fservice.getFamilyMember(name).getGender().equals(Gender.FEMALE)) {
-        return false;
-    } else {
-        fservice.getFamilyMember(name).setGender(Gender.MALE);
-        return true;
-    }
-	
+	        return false;
+			}
+			else if (fservice.getFamilyMember(name).getName().equals(name)) {
+				return false;
+			}else {
+			
+				fservice.newFamilyMember(name, Gender.MALE);
+				
+				return true;
+			}
 	}
 	
 	public boolean female(String name) {
@@ -30,22 +38,28 @@ public class Family {
 
 		if (fservice.getFamilyMember(name).getGender().equals(Gender.MALE)) {
         return false;
-    } else {
-        fservice.getFamilyMember(name).setGender(Gender.FEMALE);
-        return true;
-    }
+		}
+		else if (fservice.getFamilyMember(name).getName().equals(name)) {
+			return false;
+		}else {
 		
+			fservice.newFamilyMember(name, Gender.FEMALE);
+			
+			return true;
+		}
+			
 	}
 	
 	public boolean isMale (String name) {
 		FamilyService fservice = new FamilyService();
 
 		if( fservice.getFamilyMember(name).getGender().equals(Gender.MALE)) {
-		return true;
-		}else {
-			return false;
-		}
-			
+			return true;
+			}
+			else {
+				return false;
+			}
+				
 	}
 	
 	public boolean isFemale (String name) {
@@ -54,7 +68,8 @@ public class Family {
 
 		if( fservice.getFamilyMember(name).getGender().equals(Gender.FEMALE)) {
 		return true;
-		}else {
+		}
+		else {
 			return false;
 		}
 	}
@@ -67,12 +82,15 @@ public class Family {
 
 	        if (!haveChild){
 	            fservice.newFamilyMember(childName);
+	            return true;
 	        }
 	        if (!haveParent) {
 	            fservice.newFamilyMember(parentName);
+	            return true;
 	        }
-		
-		return false;
+	        return false;
+	        
+	        
 	}
 	
 	public String[] getParents(String name){
@@ -83,7 +101,7 @@ public class Family {
         return parents;
     }
 
-    public String[] getChildrenOf(String name){
+    public String[] getChildren(String name){
     	FamilyService fservice = new FamilyService();
     	Person person = new Person();
 		
